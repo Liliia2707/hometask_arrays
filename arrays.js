@@ -1,10 +1,37 @@
 // решить три задачи с codewars
 //  https://www.codewars.com/kata/53da3dbb4a5168369a0000fe
+
+// Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+function evenOrOdd(number) {
+  return number % 2 === 0 ? 'Even' : 'Odd'
+}
 // https://www.codewars.com/kata/57e76bc428d6fbc2d500036d
+
+// Write a function to split a string and convert it into an array of words.
+
+const string = 'Liliia Pavlova'
+function stringToArray(string) {
+  const wordsArray = string.split(" ")
+  return wordsArray
+}
+console.log(stringToArray(string))
 // https://www.codewars.com/kata/55b42574ff091733d900002f
+
+// Make a program that filters a list of strings and returns a list with only your friends name in it.
+// If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
+const friends = ["Ryan", "Kieran", "Jason", "Yous"]
+function friend(friends) {
+  return friends.filter(el => el.length === 4)
+}
+console.log(friend(friends))
 
 // Задача на filter
 // 1. Отфильтровать массив только с уникальными хначения используя filter и indexOf()
+const array = [1, 2, 2, 3, 4, 4, 5, 6, 6]
+const uniqueValues = array.filter((value, index, array) => {
+  return array.indexOf(value) === index;
+});
+console.log(uniqueValues)
 
 // 2. Отфильтровать продукты дешевле 15
 const products = [
@@ -15,6 +42,9 @@ const products = [
   { name: 'Orange', price: 12 },
 ]
 
+const cheapProducts = products.filter(el => el.price < 15)
+console.log(cheapProducts)
+
 // 3. Найти объект с автором В
 const books = [
   { title: 'Book 1', author: 'Author A' },
@@ -23,6 +53,8 @@ const books = [
   { title: 'Book 4', author: 'Author C' },
 ]
 
+const authorB = books.filter(el => el.author === 'Author B')
+console.log(authorB)
 // задачи sort
 
 // 4. отсортировать по id
@@ -44,6 +76,9 @@ const arr2 = [
   { id: 2, title: 'катамаран', price: 32000 },
 ]
 
+const sortById = arr2.sort((a, b) => a.id - b.id)
+console.log(sortById)
+
 // 5. отсортировать объекты по алфавиту
 const people = [
   { name: 'Frank', age: 35 },
@@ -57,6 +92,9 @@ const people = [
   { name: 'Grace', age: 29 },
   { name: 'Isaac', age: 23 },
 ]
+
+const sortByName = people.sort((a, b) => a.name.localeCompare(b.name))
+console.log(sortByName)
 
 // 6. Отсортиировать по возрасту
 const people = [
@@ -72,12 +110,28 @@ const people = [
   { name: 'Jack', age: 27 },
 ]
 
+const sortByAge = people.sort((a, b) => a.age - b.age)
+console.log(sortByAge)
+
+
 // задачи reduce
 // 7. найти сумму четных!! чисел массива.
 const numbers22 = [7, 42, 33, 16, 50, 3, 28, 21, 15, 39]
 
+const evenNumbers = numbers22.filter(el => el % 2 === 0)
+const sumOfEvenNumbers = evenNumbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+}, 0)
+console.log(sumOfEvenNumbers)
+
 // 8.  Используя метод reduce найти наибольшее число массива.
 const numbers23 = [7, 42, 33, 16, 50, 3, 28, 21, 15, 39]
+
+const maxNumber = numbers23.reduce((maxValue, currentValue) => {
+  return Math.max(maxValue, currentValue)
+}, numbers23[0])
+console.log(maxNumber)
+
 
 // 9.reduce найти объект товара с самой высокой ценой.
 const arr2 = [
@@ -87,6 +141,11 @@ const arr2 = [
   { id: 4, title: 'лыжи', price: 22000, marks: [4, 4, 3, 4] },
 ]
 
+const highestPrice = arr2.reduce((maxNumber, currentValue) => {
+  return Math.max(maxNumber, currentValue.price)
+}, arr2[0].price)
+console.log(highestPrice)
+
 // 10. Найти среднюю оценку marks у товара
 const arr2 = [
   { id: 1, title: 'велосипед', price: 45000, marks: [4, 5, 3, 5] },
@@ -94,3 +153,14 @@ const arr2 = [
   { id: 3, title: 'сноуборд', price: 20000, marks: [3, 3, 2, 3] },
   { id: 4, title: 'лыжи', price: 22000, marks: [4, 4, 3, 4] },
 ]
+
+const newArr2 = arr2.map(el => el.marks.reduce((acc, currentValue) => {
+  return acc + currentValue
+}, 0) / el.marks.length)
+
+console.log(newArr2)
+
+
+
+
+
